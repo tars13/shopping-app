@@ -1,10 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 import { faker } from "@faker-js/faker";
-import { cartReducer } from "./Reducers";
+import { cartReducer, productReducer } from "./Reducers";
 
 const Cart = createContext();
 
-const Context = ({ children }) => {
+const Context = (props) => {
+  const { children } = props
   const products = [...Array(20)].map(() => ({
     id: faker.datatype.uuid(),
     name: faker.commerce.productName(),
@@ -15,6 +16,12 @@ const Context = ({ children }) => {
     deliveryTime: Math.floor((Math.random() * 7) + 3),
   }));
 
+  const [productState, productDispatch] = useReducer(productReducer, {
+    byStock: false,
+    byFastDelivery: false,
+    searchQuery:"",
+  })
+
   const [state, dispatch] = useReducer(cartReducer, {
     products: products,
     cart: [],
@@ -22,7 +29,7 @@ const Context = ({ children }) => {
   //   for (let i = 0; i< products.length; i++){
   //     console.log(products[i].inStock);
   //   }
-  return <Cart.Provider value={{ state, dispatch }}>{children}</Cart.Provider>;
+  return <Cart.Provider value={{ mystate: state, dispatch, productState, productDispatch }}>{props.children}</Cart.Provider>;
 };
 
 export default Context;
