@@ -5,7 +5,7 @@ import { cartReducer, productReducer } from "./Reducers";
 const Cart = createContext();
 
 const Context = (props) => {
-  const { children } = props
+  // const { children } = props
   const products = [...Array(20)].map(() => ({
     id: faker.datatype.uuid(),
     name: faker.commerce.productName(),
@@ -29,7 +29,7 @@ const Context = (props) => {
   //   for (let i = 0; i< products.length; i++){
   //     console.log(products[i].inStock);
   //   }
-  return <Cart.Provider value={{ mystate: state, dispatch, productState, productDispatch }}>{props.children}</Cart.Provider>;
+  return <Cart.Provider value={{ state, dispatch, productState, productDispatch }}>{props.children}</Cart.Provider>;
 };
 
 export default Context;

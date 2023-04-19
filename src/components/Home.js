@@ -5,7 +5,7 @@ import "./styles.css";
 
 const Home = () => {
   const {
-    mystate: { products },
+    state: { products },
     productState: { byStock, byFastDelivery, sort, searchQuery },
   } = CartState();
 

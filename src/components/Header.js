@@ -1,7 +1,6 @@
 import {
   Container,
   Navbar,
-  Nav,
   FormControl,
   Dropdown,
   Badge,
@@ -14,7 +13,7 @@ import { CartState } from "../context/Context";
 
 const Header = () => {
   const {
-    mystate: { cart },
+    state: { cart },
     dispatch,
     productDispatch,
   } = CartState();
